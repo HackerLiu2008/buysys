@@ -448,6 +448,7 @@ class SqlData(object):
             info_dict['label'] = i[2]
             info_dict['account'] = i[3]
             info_dict['password'] = i[4]
+            info_dict['exchange_dis'] = i[8]
             info_dict['amz_money'] = i[9]
             info_dict['note'] = i[6]
             info_list.append(info_dict)
@@ -473,7 +474,7 @@ class SqlData(object):
         return rows[0][0]
 
     def update_user_cus(self, field, value, user_id, label):
-        sql = "UPDATE customer_info SET {}='{}' WHERE user_id={} AND label='{}'".format(field, value, user_id, label)
+        sql = "UPDATE customer_info SET {}=\"{}\" WHERE user_id={} AND label='{}'".format(field, value, user_id, label)
         try:
             self.cursor.execute(sql)
             self.connect.commit()

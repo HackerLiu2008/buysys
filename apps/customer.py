@@ -18,7 +18,7 @@ def del_task():
     sum_order_code = request.args.get('sum_order_code')
     user_id = g.cus_user_id
     results = {'code': RET.OK, 'msg': MSG.OK}
-    task_state = SqlData().search_task_one_field('task_state', sum_order_code)
+    task_state = SqlData().search_task_one_field('pay_cus', sum_order_code)
     if task_state == '已支付':
         results['code'] = RET.SERVERERROR
         results['msg'] = '订单已确认!不可取消请刷新当前界面!'
@@ -653,7 +653,6 @@ def smt_choose():
     if request.method == 'POST':
         task_json = SqlData().search_cus_field('task_json', cus_id)
         task_dict = json.loads(task_json, strict=False)
-
         task_list = task_dict.get('task_info')
         serve_money = float(task_dict.get('serve_money')) + float(task_dict.get('other_money'))
         good_sum_money = task_dict.get('good_money')
@@ -722,6 +721,7 @@ def smt_preview():
             label = g.cus_label
             method = request.args.get('method')
             pay_method = request.args.get('pay_method')
+            bili = request.args.get('bili')
             task_json = SqlData().search_cus_field('task_json', cus_id)
             if not task_json:
                 return '请先导入表格文件!'
@@ -735,8 +735,6 @@ def smt_preview():
             image_num = task_dict.get('image_num')
             sunday_num = task_dict.get('sunday_num')
 
-            discount = SqlData().search_cus_field('discount', cus_id)
-
             if pay_method == "默认":
                 exchange_dis = SqlData().search_cus_field('exchange_dis', cus_id)
             else:
@@ -746,16 +744,17 @@ def smt_preview():
 
             exchange = SqlData().search_user_field('dollar_exchange', user_id)
 
-            smt_serve = SqlData().search_user_field('amz_serve', user_id)
-
+            smt_serve = SqlData().search_cus_one_field('amz_money', user_id, label)
             smt_dict = json.loads(smt_serve)
-            bili = smt_dict.get('bili')
-            bili = bili / 100
+            _bili = int(bili)
+            bili = _bili / 100
             default = round(sum_num * bili)
             for i in task_info[:default]:
                 i.append('T')
             task_dict['task_info'] = task_info
             SqlData().update_user_cus('task_json', task_info, user_id, label)
+
+            smt_dict = smt_dict.get(str(_bili))
             pc_money = smt_dict.get('pc_money')
             app_money = smt_dict.get('app_money')
             text_money = smt_dict.get('text_money')
@@ -767,17 +766,17 @@ def smt_preview():
             mail_sum_money = float("%.3f" % mail_sum_money)
             s = (good_sum_money + mail_sum_money) * exchange * exchange_dis
             if method == 'PC':
-                q = sum_num * float(pc_money) * discount
+                q = sum_num * float(pc_money)
             else:
                 # APP
-                q = sum_num * float(app_money) * discount
+                q = sum_num * float(app_money)
             text = text_num * float(text_money)
             image = image_num * float(image_money)
             sunday = sunday_num * float(sunday_money)
             other_money = text + image + sunday
             context = dict()
-            context['serve_money'] = str(q) + " = 服务费总额  *  折扣"
-            context['good_money'] = str(s) + " = (商品金额总额 + 邮费总额) * 汇率  * 折扣"
+            context['serve_money'] = str(q) + " = 服务费总额"
+            context['good_money'] = str(round(s, 2)) + " = (商品金额总额 + 邮费总额) * 汇率  * 折扣"
             context['other_money'] = str(other_money) + "=文字留评) +图片留评 +周日留评"
             context['sum_money'] = "%.2f" % (q + s + other_money)
             context['sum_num'] = sum_num
@@ -789,6 +788,7 @@ def smt_preview():
             task_dict['pay_method'] = pay_method
             task_dict['buy_method'] = method
             task_json = json.dumps(task_dict, ensure_ascii=False)
+            task_json = transferContent(task_json)
             SqlData().update_user_cus('task_json', task_json, user_id, label)
             return render_template('customer/smt_preview_task.html', **context)
         except Exception as e:
@@ -845,13 +845,23 @@ def smt_task():
         return '此账号没有查看权限!!!'
     if request.method == 'GET':
         user_id = g.cus_user_id
+        label = g.cus_label
         pay_dis = SqlData().search_user_field('pay_discount', user_id)
+        smt_serve = SqlData().search_cus_one_field('amz_money', user_id, label)
         context = dict()
         if not pay_dis:
             context['pay_list'] = []
-        else:
+        if pay_dis:
             pay_dict = json.loads(pay_dis)
             context['pay_list'] = list(pay_dict.keys())
+
+        if not smt_serve:
+            context['bili_list'] = []
+
+        if smt_serve:
+            smt_dict = json.loads(smt_serve)
+            bili_list = list(smt_dict.keys())
+            context['bili_list'] = bili_list
         return render_template('customer/cus_smt_task.html', **context)
 
     # 预存表格数据到task_json字段中
@@ -874,7 +884,7 @@ def smt_task():
                 err_list = list()
                 for i in row_list[1:]:
                     index += 1
-                    if not all([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10]]):
+                    if not all([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9]]):
                         err_list.append(str(index))
                 if len(err_list) != 0:
                     results['code'] = RET.SERVERERROR
@@ -1291,7 +1301,6 @@ def task_search():
     limit = request.args.get('limit')
     field = request.args.get('field')
     value = request.args.get('value')
-    print(field, value)
     results = {"code": RET.OK, "msg": MSG.OK, "count": 0, "data": ""}
     page_list = list()
     try:

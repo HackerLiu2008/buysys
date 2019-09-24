@@ -18,18 +18,20 @@
     </style>
 </head>
 <body>
-    {% for i in serve_list %}
-    <h3 style="color: #131418">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ i }}</h3>
-    {% endfor %}
-    <hr class="layui-bg-blue">
     <div id="details" style="padding: 20px;" lay-filter="detail">
     <form class="layui-form" lay-filter="example" id="example" enctype="multipart/form-data">
+        <div class="layui-form-item" style="display: none">
+            <label class="layui-form-label">隐藏域</label>
+            <div class="layui-input-block">
+                <input type ="text" name="label"  id="label" value="{{ label }}">
+            </div>
+        </div>
 
-        <div class="layui-form-item">
+        <div class="layui-form-item" style="{{ style }}">
             <div class="layui-inline">
                 <label class="layui-form-label" >默认留评比例:</label>
                     <div class="layui-input-block" >
-                      <select name="bili" >
+                      <select name="bili" id="bili" >
                         <option value="60" selected="">60%</option>
                         <option value="0" >0%</option>
                         <option value="10" >10%</option>

@@ -70,7 +70,7 @@
 
 <table class="layui-hide" id="cus_task" lay-filter="cus_task" ></table>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" style="background-color: #1E9FFF" lay-event="again">再来一单</a>
+    <a class="layui-btn layui-btn-xs" style="background-color: #1E9FFF" lay-event="again" id="again">再来一单</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit" id="pay">确认付款</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="cancel" id="cancel">取消订单</a>
 </script>
@@ -192,6 +192,8 @@
                         if (res.data[i].pay_cus == '已支付') {
                             $('table tbody tr td a[id=pay]').eq(i).css('display', 'none');
                             $('table tbody tr td a[id=cancel]').eq(i).css('display', 'none');
+                        }else if (res.data[i].terrace == 'SMT'){
+                            $('table tbody tr td a[id=again]').eq(i).css('display', 'none');
                         }
                     }
                 }

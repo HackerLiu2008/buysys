@@ -1,10 +1,48 @@
 import json
 import logging
-from tools_me.other_tools import verify_login_time, xianzai_time, login_required
+from tools_me.other_tools import verify_login_time, xianzai_time, login_required, transferContent
 from tools_me.parameter import RET, MSG
 from . import user_blueprint
 from flask import render_template, request, jsonify, session, g
 from tools_me.mysql_tools import SqlData
+
+
+@user_blueprint.route('/smt_customer_bili', methods=['GET'])
+@login_required
+def smt_detail_bili():
+    label = request.args.get('label')
+    limit = request.args.get('limit')
+    page = request.args.get('page')
+    user_id = g.user_id
+    smt_money = SqlData().search_cus_one_field('amz_money', user_id, label)
+    if not smt_money:
+        return jsonify({'code': RET.OK, 'msg': MSG.NODATA})
+    else:
+        results = dict()
+        smt_dict = json.loads(smt_money)
+        smt_bili = smt_dict.keys()
+        info_list = list()
+        for i in smt_bili:
+            dict_info = smt_dict.get(i)
+            dict_info['bili'] = i
+            info_list.append(dict_info)
+        results['code'] = RET.OK
+        results['msg'] = MSG.OK
+        page_list = list()
+        for i in range(0, len(info_list), int(limit)):
+            page_list.append(info_list[i:i + int(limit)])
+        results['data'] = page_list[int(page) - 1]
+        results['count'] = len(info_list)
+        return jsonify(results)
+
+
+@user_blueprint.route('/smt_customer_detail', methods=['GET'])
+@login_required
+def smt_customer_detail():
+    label = request.args.get('label')
+    context = dict()
+    context['label'] = label
+    return render_template('user/smt_customer_money.html', **context)
 
 
 @user_blueprint.route('/pay_middle', methods=['GET'])
@@ -261,6 +299,24 @@ def smt_pay():
         return jsonify({'code': RET.OK, 'msg': MSG.OK})
 
 
+@user_blueprint.route('/del_smt_money', methods=['GET'])
+@login_required
+def del_smt_money():
+    label = request.args.get('label')
+    bili = request.args.get('bili')
+    user_id = g.user_id
+    smt_serve = SqlData().search_cus_one_field('amz_money', user_id, label)
+    smt_dict = json.loads(smt_serve)
+    if len(smt_dict) == 1:
+        SqlData().update_user_cus('amz_money', '', user_id, label)
+        return jsonify({'code': RET.OK, 'msg': MSG.OK})
+    smt_dict.pop(bili)
+    serve_json = json.dumps(smt_dict)
+    serve_json = transferContent(serve_json)
+    SqlData().update_user_cus('amz_money', serve_json, user_id, label)
+    return jsonify({'code': RET.OK, 'msg': MSG.OK})
+
+
 @user_blueprint.route('/smt_serve', methods=['GET', 'POST'])
 @login_required
 def smt_serve():
@@ -269,49 +325,83 @@ def smt_serve():
     if terrace != 'SMT':
         return '此账号没有权限!!!'
     if request.method == 'GET':
-        amz_serve = SqlData().search_user_field('amz_serve', user_id)
-        if not amz_serve:
-            context = {'serve_list': ['暂无收费标准!']}
+        label = request.args.get('label')
+        style = request.args.get('style')
+        context = dict()
+        context['label'] = label
+        if style:
+            context['style'] = 'display: none'
         else:
-            serve_dict = json.loads(amz_serve)
-            serve_list = list()
-            for key, value in sorted(serve_dict.items()):
-                if key == 'bili':
-                    s = '留评比例: ' + str(value) + "%"
-                else:
-                    s = "服务类型: " + str(key) + ", 单价: " + str(value)
-                serve_list.append(s)
-            context = {'serve_list': serve_list}
+            context['style'] = ""
         return render_template('user/smt_serve_money.html', **context)
     if request.method == 'POST':
         data = json.loads(request.form.get('data'))
+        label = data.get('label')
         bili = data.get('bili')
         pc_money = data.get('pc_money')
         app_money = data.get('app_money')
         text_money = data.get('text_money')
         image_money = data.get('image_money')
         sunday_money = data.get('sunday_money')
-        smt_serve = SqlData().search_user_field('amz_serve', user_id)
+        bili = int(bili)
+        smt_serve = SqlData().search_cus_one_field('amz_money', user_id, label)
+        # 三种情况,第一次操作添加, 第二次修改操作, 第三种第一次数据库无内容的情况
+        # 第一次操作的情况
         if not smt_serve:
+            big_dict = dict()
             serve_dict = dict()
+            if pc_money:
+                serve_dict['pc_money'] = float(pc_money)
+            if app_money:
+                serve_dict['app_money'] = float(app_money)
+            if text_money:
+                serve_dict['text_money'] = float(text_money)
+            if image_money:
+                serve_dict['image_money'] = float(image_money)
+            if sunday_money:
+                serve_dict['sunday_money'] = float(sunday_money)
+            dome = {bili: serve_dict}
+            big_dict.update(dome)
+            serve_json = json.dumps(big_dict)
+            serve_json = transferContent(serve_json)
+            SqlData().update_user_cus('amz_money', serve_json, user_id, label)
+            return jsonify({'code': RET.OK, 'msg': MSG.OK})
         else:
-            serve_dict = json.loads(smt_serve)
-        if bili:
-            serve_dict['bili'] = int(bili)
-        if pc_money:
-            serve_dict['pc_money'] = float(pc_money)
-        if app_money:
-            serve_dict['app_money'] = float(app_money)
-        if text_money:
-            serve_dict['text_money'] = float(text_money)
-        if image_money:
-            serve_dict['image_money'] = float(image_money)
-        if sunday_money:
-            serve_dict['sunday_money'] = float(sunday_money)
-
-        serve_json = json.dumps(serve_dict)
-        SqlData().update_user_field('amz_serve', "'" + serve_json + "'", user_id)
-        return jsonify({'code': RET.OK, 'msg': MSG.OK})
+            smt_dict = json.loads(smt_serve)
+            bili = str(bili)
+            if bili in smt_dict:
+                if pc_money:
+                    smt_dict[bili]['pc_money'] = float(pc_money)
+                if app_money:
+                    smt_dict[bili]['app_money'] = float(app_money)
+                if text_money:
+                    smt_dict[bili]['text_money'] = float(text_money)
+                if image_money:
+                    smt_dict[bili]['image_money'] = float(image_money)
+                if sunday_money:
+                    smt_dict[bili]['sunday_money'] = float(sunday_money)
+                serve_json = json.dumps(smt_dict)
+                serve_json = transferContent(serve_json)
+                SqlData().update_user_cus('amz_money', serve_json, user_id, label)
+                return jsonify({'code': RET.OK, 'msg': MSG.OK})
+            else:
+                serve_dict = dict()
+                if pc_money:
+                    serve_dict['pc_money'] = float(pc_money)
+                if app_money:
+                    serve_dict['app_money'] = float(app_money)
+                if text_money:
+                    serve_dict['text_money'] = float(text_money)
+                if image_money:
+                    serve_dict['image_money'] = float(image_money)
+                if sunday_money:
+                    serve_dict['sunday_money'] = float(sunday_money)
+                dome = {bili: serve_dict}
+                smt_dict.update(dome)
+                serve_json = json.dumps(smt_dict)
+                serve_json = transferContent(serve_json)
+                SqlData().update_user_cus('amz_money', serve_json, user_id, label)
+                return jsonify({'code': RET.OK, 'msg': MSG.OK})
 
 
 @user_blueprint.route('/amz_serve_money', methods=['GET', 'POST'])
@@ -434,16 +524,7 @@ def customer_detail():
         return '此账号没有查看SMT信息权限!'
     if request.method == 'GET':
         try:
-            data_list = SqlData().search_customer_detail(user_id)
-            str_list = list()
-            for i in data_list:
-                one_str = ''
-                for key, value in i.items():
-                    s = str(key) + ':' + str(value) + ', '
-                    one_str += s
-                str_list.append(one_str)
-            context = {'detail_list': str_list}
-            return render_template('customer/customer_detail.html', **context)
+            return render_template('user/smt_money.html',)
         except Exception as e:
             logging.error(str(e))
             return jsonify({'code': RET.SERVERERROR, 'msg': MSG.NODATA})
@@ -502,7 +583,6 @@ def customer():
         add_cus = data.get('add_cus')
         account = data.get('account')
         password = data.get('password')
-        discount = data.get('discount')
         ex_discount = data.get('ex_discount')
         note = data.get('note')
         try:
@@ -512,15 +592,11 @@ def customer():
                     SqlData().update_user_cus('account', account, user_id, add_cus)
                 if password:
                     SqlData().update_user_cus('pass_word', password, user_id, add_cus)
-                if discount:
-                    SqlData().update_user_cus('discount', float(discount), user_id, add_cus)
                 if ex_discount:
                     SqlData().update_user_cus('exchange_dis', float(ex_discount), user_id, add_cus)
                 if note:
                     SqlData().update_user_cus('note', note, user_id, add_cus)
             if add_cus not in label_list:
-                if not discount:
-                    discount = '1.0'
                 if not ex_discount:
                     ex_discount = '1.0'
                 if not account:
@@ -531,7 +607,7 @@ def customer():
                     note = ''
                 SqlData().insert_user_cus(add_cus, account, password, note, user_id)
                 SqlData().update_user_cus('exchange_dis', float(ex_discount), user_id, add_cus)
-                SqlData().update_user_cus('discount', float(discount), user_id, add_cus)
+                SqlData().update_user_cus('discount', 1, user_id, add_cus)
             return jsonify({'code': RET.OK, 'msg': MSG.OK})
 
         except Exception as e:

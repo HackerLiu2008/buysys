@@ -32,7 +32,7 @@
             <a href="javascript:">收费标准</a>
             <dl class="layui-nav-child">
               <dd id="user_conf"><a href="javascript:">汇&nbsp率&nbsp配&nbsp置</a></dd>
-              <dd id="smt_serve"><a href="javascript:">SMT收费标准</a></dd>
+{#              <dd id="smt_serve"><a href="javascript:">SMT收费标准</a></dd>#}
               <dd id="smt_pay"><a href="javascript:">SMT支付渠道汇率</a></dd>
             </dl>
         </li>
@@ -294,7 +294,7 @@
                  type: 2
                 ,title: false //不显示标题栏
                 ,closeBtn: false
-                ,area: ['1800px','1000px']
+                ,area: ['80%','80%']
                 ,shade: 0.8
                 ,shadeClose:true
                 ,id: 'user_customer_detail' //设定一个id，防止重复弹出
@@ -311,7 +311,7 @@
                  type: 2
                 ,title: false //不显示标题栏
                 ,closeBtn: false
-                ,area: ['600px','600px']
+                ,area: ['20%','40%']
                 ,shadeClose:true
                 ,shade: 0.8
                 ,id: 'user_customer_label' //设定一个id，防止重复弹出
@@ -330,7 +330,7 @@
                  type: 2
                 ,title: false //不显示标题栏
                 ,closeBtn: false
-                ,area: ['700px','400px']
+                ,area: ['80%','80%']
                 ,shade: 0.8
                 ,shadeClose:true
                 ,id: 'user_customer_detail' //设定一个id，防止重复弹出
@@ -467,10 +467,10 @@
             return false
         });
 
-      $('.demoTable .layui-btn').on('click', function(){
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-      });
+       $('.demoTable .layui-btn').on('click', function(){
+           var type = $(this).data('type');
+           active[type] ? active[type].call(this) : '';
+       });
 
         //监听行工具事件
         table.on('tool(account_all)', function (obj) { //注：tool 是工具条事件名，test_all 是 table 原始容器的属性 lay-filter="对应的值"

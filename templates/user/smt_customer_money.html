@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>GUTE 账号管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all">
+    <script src="/static/layui/layui.js"></script>
+    <style>
+        body {
+            margin: 10px;
+        }
+    </style>
+<body>
+<form>
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text" name="label"  id="label" value="{{ label }}">
+    </div>
+</div>
+</form>
+
+<table class="layui-hide" id="filter_order" lay-filter="filter_order"></table>
+
+<script src="/static/layui/layui.all.js"></script>
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData" id="new_bili">添加新的比例及收费</button>
+  </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.config({
+        version: '1560414887305' //为了更新 js 缓存，可忽略
+    });
+
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form'], function () {
+
+        var layer = layui.layer //弹层
+            , table = layui.table //表格
+            , element = layui.element //元素操作
+            , form = layer.form
+            , $ = layui.$;
+
+        var label = $('#label').val();
+
+        //执行一个 table 实例
+        table.render({
+            elem: '#filter_order'
+            , height: ''
+            , url: '/user/smt_customer_bili?label='+label //数据接口
+            , title: '速卖通收费明细'
+            , limit:10
+            , area: ['1500px','900px']
+            , toolbar: '#toolbarDemo'
+            , totalRow: true //开启合计行
+            , cols: [[ //表头
+                {type:'numbers'}
+                , {field: 'bili', title: '留评比例(%)', align: 'center', sort: true}
+                , {field: 'pc_money', title: 'PC端下单价格', align: 'center', sort: true}
+                , {field: 'app_money', title: 'APP端下单价格', align: 'center', sort: true}
+                , {field: 'text_money', title: '文字留评', align: 'center', sort: true}
+                , {field: 'image_money', title: '图片留评', align: 'center', sort: true}
+                , {field: 'sunday_money', title: '周日留评', align: 'center', sort: true}
+                , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
+            ]]
+            , id: 'smt_customer'
+            , page: true
+        });
+
+        $('#new_bili').on('click',function (){
+            layer.open({
+                 type: 2
+                ,title: false //不显示标题栏
+                ,closeBtn: false
+                ,area: ['500px','700px']
+                ,shade: 0.8
+                ,id: 'smt_serve_money' //设定一个id，防止重复弹出
+                ,btn: ['关闭']
+                ,btnAlign: 'c'
+                ,shadeClose: true
+                ,moveType: 1 //拖拽模式，0或者1
+                ,content: '/user/smt_serve?label='+label
+                ,end:function () {
+                    location.reload()
+                }
+           });
+        });
+
+          //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+
+
+
+        //自定义头工具栏右侧图标 - 提示
+        case 'LAYTABLE_TIPS':
+        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+        break;
+        };
+        });
+
+        //监听行工具事件
+        table.on('tool(filter_order)', function (obj) { //注：tool 是工具条事件名，test_all 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+
+            if (layEvent === 'detail'){
+                layer.open({
+                     type: 2
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: ['500px','700px']
+                    ,shade: 0.8
+                    ,id: 'smt_serve_money' //设定一个id，防止重复弹出
+                    ,btn: ['关闭']
+                    ,btnAlign: 'c'
+                    ,shadeClose: true
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: '/user/smt_serve?label='+label +'&style=true'
+                    ,success: function(layero, index) {
+                        var body = layer.getChildFrame('body', index);
+                        body.contents().find("#bili").val(data.bili);
+                    }
+                    ,end:function () {
+                    location.reload()
+                }
+               });
+            }else if (layEvent === 'del'){
+                layer.confirm('真的该收费标准吗?', function (index) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                    $.ajax({
+                        type : 'GET',
+                        url : '/user/del_smt_money?label='+label + '&bili='+data.bili,
+                        dataType : 'json',
+                        success : function(data) {
+                            // 成功提示框
+                            if (data.code == 0){
+
+                                parent.layer.msg('删除成功!', {
+                                icon : 6,
+                            });
+                            }else if(data.code == 502){
+                                parent.layer.msg('删除失败!', {
+                                icon : 5
+                            });
+                            }
+
+                        },
+                        error : function(data) {
+                            // 异常提示
+                            parent.layer.msg('出现网络故障', {
+                                icon : 5
+                            });
+                        }
+                            });
+                    return false
+                });
+            }
+        });
+
+
+    });
+
+</script>
+</body>
+</html>

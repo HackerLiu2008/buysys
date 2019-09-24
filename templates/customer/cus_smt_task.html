@@ -35,6 +35,16 @@
         </div>
       </div>
 
+        <div class="layui-form-item">
+        <label class="layui-form-label">选择留评比例(%)</label>
+        <div class="layui-input-block">
+          <select name="bili" lay-filter="">
+              {% for i in bili_list %}
+            <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+          </select>
+        </div>
+      </div>
 
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="layui-btn" id="task"><i class="layui-icon"></i>上传文件</button>
         <br>&nbsp
@@ -60,6 +70,7 @@
         var sub = $('#sub');
         sub.on('click', function(data) {
             var str = $("#example").serialize();
+            console.log(str);
             layer.open({
                 type: 2
                 , offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset

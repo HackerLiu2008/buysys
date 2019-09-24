@@ -337,15 +337,36 @@ def filter_order():
 
     try:
         filter_of_terrace = SqlData().search_account_action('', terrace, country, user_id)
+
+        # 一下注释循环为查看某个账号在哪个环节被过滤
+        # for i in filter_of_terrace:
+        #     if i.get('account_id') == 832:
+        #         print('YES terrace')
+
         if len(filter_of_terrace) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合平台和国家要求的可用账号!'})
         match_of_time = filter_by_time(filter_of_terrace, int(last_buy))
+
+        # for i in match_of_time:
+        #     if i.get('account_id') == 832:
+        #         print('YES time')
+
         if len(match_of_time) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合距离上次可购买时间账号!'})
         match_of_store = filter_by_store(match_of_time, store_name, store, store_group)
+
+        # for i in match_of_store:
+        #     if i.get('account_id') == 832:
+        #         print('YES store')
+
         if len(match_of_store) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合店铺组合或店铺重合可用账号!'})
         match_of_asin = filter_by_asin(match_of_store, asin_name, asin, asin_group)
+
+        # for i in match_of_asin:
+        #     if i == 832:
+        #         print('YES  asin')
+
         if len(match_of_asin) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合ASIN组合或重合ASIN可用账号!'})
 
