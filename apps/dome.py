@@ -12,9 +12,9 @@ def lum_change():
     user_name = request.args.get('userName')
     account = request.args.get('account')
     key = request.args.get('key')
-    t = time.time() + 10
+    t = time.time() + 4
     if t < float(key):
         return jsonify({'code': 404, 'msg': '超出范围时间!'})
     send = CCP()
-    res = send.send_Template_sms(int(phone), [user_name, account], 476606)
+    res = send.send_Template_sms(int(phone), [user_name, account], 476970)
     return jsonify({'code': res, 'msg': ''})
