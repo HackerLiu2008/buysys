@@ -64,26 +64,22 @@ def up_review_pic():
     file_name = str(user_id) + "-" + sum_code() + ".PNG"
     file_path = PHOTO_DIR + "/" + file_name
     file.save(file_path)
-    filename = sm_photo(file_path)
-    if filename == 'F':
-        return jsonify({'code': RET.SERVERERROR, 'msg': '不可上传相同图片,请重新上传!'})
-    if filename:
-        os.remove(file_path)
-        phone_link = filename
-        phone_info = SqlData().search_review_pic(task_code)
-        if not phone_info:
-            link_dict = dict()
-            link_dict[phone_link] = 'one'
-            link_json = json.dumps(link_dict)
-            SqlData().update_review_one('pic_link', link_json, task_code)
-        if phone_info:
-            link_dict = json.loads(phone_info)
-            link_dict[phone_link] = 'two'
-            link_json = json.dumps(link_dict)
-            SqlData().update_review_one('pic_link', link_json, task_code)
-        return jsonify(results)
-    else:
-        return jsonify({'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR})
+    file.save(file_path)
+    static_path = '/static/photo/' + file_name
+    file_path = 'http://114.116.236.27:8080/user/pic_link?path=' + static_path
+    phone_link = file_path
+    phone_info = SqlData().search_review_pic(task_code)
+    if not phone_info:
+        link_dict = dict()
+        link_dict[phone_link] = 'one'
+        link_json = json.dumps(link_dict)
+        SqlData().update_review_one('pic_link', link_json, task_code)
+    if phone_info:
+        link_dict = json.loads(phone_info)
+        link_dict[phone_link] = 'two'
+        link_json = json.dumps(link_dict)
+        SqlData().update_review_one('pic_link', link_json, task_code)
+    return jsonify(results)
 
 
 @order_blueprint.route('/one_detail/', methods=['GET'])

@@ -16,18 +16,23 @@ from qiniu import Auth, put_file
 
 
 def sm_photo(path):
-    url = "https://sm.ms/api/v2/upload"
+    url = "https://sm.ms/api/v2/upload?inajax=1"
+
+    proxies = {'http': '159.138.55.160:25596'}
 
     file = open(path, 'rb')
 
-    smfile = {'smfile': file}
+    smfile = {'smfile': file, 'file_id': 0}
 
-    header = {'Authorization': "y5Ddvk7l0eca8eyDJO70zyk6FdujIv3k"}
+    header = {'Authorization': "D1YVhkeJPPgMILWFi8zDTJkvCPwJnmtE"}
 
-    results = requests.post(url, headers=header, files=smfile)
+    results = requests.get('http://lumtest.com/myip.json', proxies=proxies)
+
+    print(results.json())
+    results = requests.post(url, headers=header, proxies=proxies, files=smfile)
 
     dict_info = results.json()
-
+    print(dict_info)
     data = dict_info.get('data')
 
     code = dict_info.get('code')

@@ -636,7 +636,6 @@ class SqlData(object):
         sql = "SELECT * FROM account_info LEFT JOIN address_card_info ON account_info.id = address_card_info.account_" \
               "id LEFT JOIN account_action ON account_info.id = account_action.account_id WHERE account_info.account=" \
               "'{}' AND account_info.user_id ={}".format(account, user_id)
-
         self.cursor.execute(sql)
         rows = self.cursor.fetchall()
         row = rows[0]

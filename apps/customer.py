@@ -6,7 +6,6 @@ import xlrd
 from tools_me.other_tools import customer_required, save_file, excel_to_data, asin_num, sum_code, xianzai_time, \
     date_to_week, transferContent, now_day, verify_login_time
 from tools_me.parameter import RET, MSG, TASK_DIR, PHOTO_DIR
-from tools_me.up_pic import sm_photo
 from . import customer_blueprint
 from flask import render_template, request, jsonify, session, g
 from tools_me.mysql_tools import SqlData
@@ -387,27 +386,21 @@ def up_review_pic():
     file_name = str(user_id) + "-" + sum_code() + ".PNG"
     file_path = PHOTO_DIR + "/" + file_name
     file.save(file_path)
-    filename = sm_photo(file_path)
-    if filename == 'F':
-        os.remove(file_path)
-        return jsonify({'code': RET.SERVERERROR, 'msg': '不可上传相同图片,请重新上传!'})
-    if filename:
-        os.remove(file_path)
-        if image_state == 'T':
-            phone_link = dict()
-            phone_link[filename] = 1
-            link_json = json.dumps(phone_link, ensure_ascii=False)
-            SqlData().update_review_one('review_info', link_json, task_code)
-        else:
-            phone_link = json.loads(image_state)
-            if len(phone_link) == 4:
-                return jsonify({'code': RET.SERVERERROR, 'msg': '最多可上传四张图片'})
-            phone_link[filename] = 1
-            link_json = json.dumps(phone_link, ensure_ascii=False)
-            SqlData().update_review_one('review_info', link_json, task_code)
-        return jsonify(results)
+    static_path = '/static/photo/' + file_name
+    file_path = 'http://114.116.236.27:8080/user/pic_link?path=' + static_path
+    if image_state == 'T':
+        phone_link = dict()
+        phone_link[file_path] = 1
+        link_json = json.dumps(phone_link, ensure_ascii=False)
+        SqlData().update_review_one('review_info', link_json, task_code)
     else:
-        return jsonify({'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR})
+        phone_link = json.loads(image_state)
+        if len(phone_link) == 4:
+            return jsonify({'code': RET.SERVERERROR, 'msg': '最多可上传四张图片'})
+        phone_link[file_path] = 1
+        link_json = json.dumps(phone_link, ensure_ascii=False)
+        SqlData().update_review_one('review_info', link_json, task_code)
+    return jsonify(results)
 
 
 @customer_blueprint.route('/edit_smt', methods=['GET', 'POST'])
@@ -516,16 +509,19 @@ def up_pay_pic():
     file_name = str(user_id) + "-" + sum_order_code + ".PNG"
     file_path = PHOTO_DIR + "/" + file_name
     file.save(file_path)
-    filename = sm_photo(file_path)
-    if filename == 'F':
-        os.remove(file_path)
-        return jsonify({'code': RET.SERVERERROR, 'msg': '不可上传相同图片,请重新上传!'})
-    if filename:
-        os.remove(file_path)
-        SqlData().update_task_one('deal_num', filename, sum_order_code)
-        return jsonify(results)
-    else:
-        return jsonify({'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR})
+    static_path = '/static/photo/' + file_name
+    file_path = 'http://114.116.236.27:8080/user/pic_link?path=' + static_path
+    SqlData().update_task_one('deal_num', file_path, sum_order_code)
+    return jsonify(results)
+    # filename = sm_photo(file_path)
+    # if filename == 'F':
+    #     os.remove(file_path)
+    #     return jsonify({'code': RET.SERVERERROR, 'msg': '不可上传相同图片,请重新上传!'})
+    # if filename:
+    #     os.remove(file_path)
+
+    # else:
+    #     return jsonify({'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR})
 
 
 @customer_blueprint.route('/task_choose', methods=['GET', 'POST'])

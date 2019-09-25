@@ -1,10 +1,19 @@
 import json
 import logging
 from tools_me.other_tools import verify_login_time, xianzai_time, login_required, transferContent
-from tools_me.parameter import RET, MSG
+from tools_me.parameter import RET, MSG, PHOTO_DIR
 from . import user_blueprint
 from flask import render_template, request, jsonify, session, g
 from tools_me.mysql_tools import SqlData
+
+
+@user_blueprint.route('/pic_link', methods=['GET'])
+def pic_link():
+    name = request.args.get('path')
+    path = name
+    context = dict()
+    context['path'] = path
+    return render_template('user/photo_html.html', **context)
 
 
 @user_blueprint.route('/smt_customer_bili', methods=['GET'])
