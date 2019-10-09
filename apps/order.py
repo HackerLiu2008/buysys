@@ -1,10 +1,8 @@
 import json
 import logging
 import operator
-import os
 from tools_me.other_tools import login_required, now_day, check_param, filter_by_time, filter_by_store, \
     filter_by_asin, xianzai_time, sum_code
-from tools_me.up_pic import sm_photo
 from . import order_blueprint
 from flask import render_template, jsonify, request, g
 from tools_me.mysql_tools import SqlData
@@ -475,11 +473,12 @@ def order_detail():
                 task_info = SqlData().search_now_order(t1, t2, user_id)
             elif buy_state == '已分配' or buy_state == '已完成' or buy_state == '待留评':
                 task_info = SqlData().search_order_of_state(buy_state, user_id)
-                task_info = sorted(task_info, key=operator.itemgetter('urgent'))
+                task_info = sorted(task_info, key=operator.itemgetter('urgent', 'task_run_time'))
             elif buy_state == '已逾期':
                 task_info = SqlData().search_order_of_overdue(t1, user_id)
             elif buy_state == '已提交':
                 task_info = SqlData().search_order_of_order_num(user_id)
+                task_info = sorted(task_info, key=operator.itemgetter('task_run_time'))
             task_info = list(reversed(task_info))
             for i in range(0, len(task_info), int(limit)):
                 page_list.append(task_info[i:i + int(limit)])
@@ -511,6 +510,7 @@ def order_detail():
             return results
 
     except Exception as e:
+        print(e)
         logging.warning('没有符合条件的数据' + str(e))
         results['code'] = RET.SERVERERROR
         results['msg'] = MSG.NODATA

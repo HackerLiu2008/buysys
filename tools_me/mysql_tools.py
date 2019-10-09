@@ -179,6 +179,7 @@ class SqlData(object):
             order_data['task_state'] = i[17]
             order_data['brush_hand'] = i[18]
             order_data['order_num'] = i[19]
+            order_data['good_money_real'] = i[20]
             order_data['note'] = i[24]
             order_data['review_title'] = i[25]
             if is_json(i[26]):

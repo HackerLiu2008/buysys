@@ -1380,6 +1380,21 @@ def customer_task():
     page = request.args.get('page')
     limit = request.args.get('limit')
     results = {'code': RET.OK, 'msg': MSG.OK}
+    sum_order_code = request.args.get('sum_order_code')
+    if sum_order_code:
+        page = request.args.get('page')
+        limit = request.args.get('limit')
+        task_info = SqlData().search_task_on_code('sum_order_code', sum_order_code, user_id)
+        if len(task_info) == 0:
+            return jsonify({'code': RET.OK, 'msg': MSG.NODATA})
+        task_info = list(reversed(task_info))
+        page_list = list()
+        for i in range(0, len(task_info), int(limit)):
+            page_list.append(task_info[i:i + int(limit)])
+        results['data'] = page_list[int(page) - 1]
+        results['count'] = len(task_info)
+        return jsonify(results)
+
     task_info = SqlData().search_task_on_code('customer_label', cus_label, user_id)
     if len(task_info) == 0:
         return jsonify({'code': RET.OK, 'msg': MSG.NODATA})

@@ -50,6 +50,7 @@
                         <option value="asin" selected="">ASIN</option>
                         <option value="order_num">订单编号</option>
                         <option value="task_code">小任务编号</option>
+                        <option value="sum_code">大任务编号</option>
                         <option value="store_name">店铺名称</option>
                     </select>
                 </div>
@@ -91,6 +92,14 @@
                 parent.layer.msg('请输入搜索内容!!', {
                     icon : 5
                 });
+            }else if(field=='sum_code'){
+                table.reload('cus_task', {
+                page: {
+                  curr: 1 //重新从第 1 页开始
+                },where:{
+                    sum_order_code: value
+                    }
+              }, );
             }else{layer.open({
                      type: 2
                     ,title: '查询结果如下' //不显示标题栏
