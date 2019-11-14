@@ -396,6 +396,7 @@ def filter_by_asin(match_of_store, asin_name, asin, asin_group):
         for one_action in match_of_store:
             stores = one_action.get('goods')
             if stores:
+                print(stores)
                 store_list = list(json.loads(stores).keys())
                 if asin_name not in store_list:
                     match_of_asin.append(one_action)
@@ -470,9 +471,6 @@ def transferContent(content):
             if i == "'":
                 i = "\\'"
                 string += i
-            elif i == '"':
-                s = '\\"'
-                string += s
             else:
                 string += i
         return string

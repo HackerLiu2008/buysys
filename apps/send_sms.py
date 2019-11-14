@@ -1,21 +1,26 @@
+
+
 from email.header import Header
+from email.mime.image import MIMEImage
 from smtplib import SMTP_SSL
 from email.mime.text import MIMEText
 
 # 用什么邮箱发
-my_sender = "iuwby@qq.com"
+my_sender = "3223750580@qq.com"
 
 # 发送给谁
-send_her = "buysys@163.com"
+send_her = "2404052713@qq.com"
 
 # 密钥
-s_keys = "gxzegzuvcnvrdjjg"
+s_keys = "hmfsyounyuutcidj"
+
+s_2 = "avjubvfehybzcifg"
 
 # 要发送的内容
-context = "测试"
+context = "客户: 刘 。于2019/10/28 12:23:33, 在线申请充值500美元。"
 
 # 邮件头部信息
-header_info = "测试"
+header_info = "全球付"
 
 
 def mail():
@@ -27,7 +32,7 @@ def mail():
         msg['Subject'] = Header(header_info, 'utf-8')
 
         server = SMTP_SSL('smtp.qq.com', 465)
-        server.login(my_sender, s_keys)
+        server.login(my_sender, s_2)
         server.sendmail(my_sender, send_her, msg.as_string())
         server.quit()
     except Exception as e:
@@ -35,7 +40,4 @@ def mail():
         ret = False
     return ret
 
-
-while True:
-    res = mail()
-    print(res)
+mail()

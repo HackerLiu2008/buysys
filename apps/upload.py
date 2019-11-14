@@ -65,7 +65,6 @@ def up_account():
             index += 1
             if not all([i[0], i[1], i[7], i[8]]):
                 err_list.append(str(index))
-
         if len(err_list) != 0:
             results['code'] = RET.SERVERERROR
             m = ""
@@ -182,7 +181,7 @@ def up_task():
             try:
                 SqlData().insert_task_detail(parent_id, task_code, country, asin, key_word, kw_location, store_name,
                                              good_name, good_money, good_link, pay_method, task_run_time, serve_class,
-                                             mail_method, note, review_title, review_info, feedback_info)
+                                             mail_method, note, review_title, review_info, feedback_info, user_id)
                 i += 1
             except Exception as e:
                 logging.error(str(e))

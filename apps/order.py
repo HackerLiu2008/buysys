@@ -59,7 +59,7 @@ def up_review_pic():
     results = {'code': RET.OK, 'msg': MSG.OK}
     file = request.files.get('file')
     task_code = request.args.get('task_code')
-    file_name = str(user_id) + "-" + sum_code() + ".PNG"
+    file_name = str(user_id) + "-" + sum_code() + ".png"
     file_path = PHOTO_DIR + "/" + file_name
     file.save(file_path)
     file.save(file_path)
@@ -211,8 +211,8 @@ def sub_order():
         data = json.loads(request.form.get('data'))
         task_code = data.get('task_code')
         account = data.get('account')
-        asin = data.get('asin')
-        store = data.get('store')
+        asin = data.get('asin').strip()
+        store = data.get('store').strip()
         serve_class = data.get('serve_class')
         order_num = data.get('order_num')
         good_money_real = data.get('good_money_real')
