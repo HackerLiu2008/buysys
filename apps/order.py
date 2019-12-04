@@ -1,12 +1,54 @@
 import json
 import logging
 import operator
-from tools_me.other_tools import login_required, now_day, check_param, filter_by_time, filter_by_store, \
+from tools_me.other_tools import login_required, now_day, filter_by_time, filter_by_store, \
     filter_by_asin, xianzai_time, sum_code
 from . import order_blueprint
 from flask import render_template, jsonify, request, g
 from tools_me.mysql_tools import SqlData
 from tools_me.parameter import RET, MSG, ORDER, PHOTO_DIR
+
+
+@order_blueprint.route('/henry/', methods=['GET'])
+def henry():
+    task_code = request.args.get('task_code')
+    results = {'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR}
+    try:
+        data = SqlData().search_order_task_code(task_code)
+        one_detail = dict()
+        one_detail['big_code'] = data[2].split('-')[0]
+        one_detail['task_code'] = data[2]
+        one_detail['country'] = data[3]
+        one_detail['asin'] = data[4]
+        one_detail['key_word'] = data[5]
+        one_detail['kw_location'] = data[6]
+        one_detail['store_name'] = data[7]
+        one_detail['good_name'] = data[8]
+        one_detail['good_money'] = data[9]
+        one_detail['good_link'] = data[10]
+        one_detail['mail_method'] = data[11]
+        one_detail['pay_method'] = data[12]
+        one_detail['serve_class'] = data[13]
+        one_detail['buy_account'] = data[14]
+        one_detail['account_ps'] = data[15]
+        one_detail['task_run_time'] = str(data[16])
+        one_detail['task_state'] = data[17]
+        one_detail['brush_hand'] = data[18]
+        one_detail['order_num'] = data[19]
+        one_detail['good_money_real'] = data[20]
+        one_detail['mail_money'] = data[21]
+        one_detail['taxes_money'] = data[22]
+        one_detail['sum_money'] = data[23]
+        one_detail['note'] = data[24]
+        one_detail['review_title'] = data[25]
+        one_detail['review_info'] = data[26]
+        one_detail['feedback_info'] = data[27]
+        one_detail['review_note'] = data[29]
+        return jsonify(one_detail)
+
+    except Exception as e:
+        logging.error(str(e))
+        return jsonify(results)
 
 
 @order_blueprint.route('/', methods=['GET'])
@@ -41,10 +83,12 @@ def sub_review():
         results = {'code': RET.OK, 'msg': MSG.OK}
         data = json.loads(request.form.get('data'))
         note = data.get('note')
-        task_code = data.get('task_code')
+        task_code = data.get('task_code').strip()
         account = data.get('account')
+        n_time = xianzai_time()
         SqlData().update_review_one('task_state', '已完成', task_code)
         SqlData().update_review_one('urgent', '', task_code)
+        SqlData().update_review_one('review_time', n_time, task_code)
         SqlData().update_account_one('account_state', '', account, user_id)
         SqlData().update_account_review_num(account, user_id)
         if note:
@@ -61,7 +105,6 @@ def up_review_pic():
     task_code = request.args.get('task_code')
     file_name = str(user_id) + "-" + sum_code() + ".png"
     file_path = PHOTO_DIR + "/" + file_name
-    file.save(file_path)
     file.save(file_path)
     static_path = '/static/photo/' + file_name
     file_path = 'http://114.116.236.27:8080/user/pic_link?path=' + static_path
@@ -87,6 +130,7 @@ def one_detail():
     results = {'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR}
     try:
         data = SqlData().search_order_task_code(task_code)
+        print(data)
         one_detail = dict()
         one_detail['big_code'] = data[2].split('-')[0]
         one_detail['task_code'] = data[2]
@@ -105,23 +149,25 @@ def one_detail():
         one_detail['account_ps'] = data[15]
         one_detail['task_run_time'] = str(data[16])
         one_detail['task_state'] = data[17]
-        one_detail['brush_hand'] = data[18]
-        one_detail['order_num'] = data[19]
-        one_detail['good_money_real'] = data[20]
-        one_detail['mail_money'] = data[21]
-        one_detail['taxes_money'] = data[22]
-        one_detail['sum_money'] = data[23]
-        one_detail['note'] = data[24]
-        one_detail['review_title'] = data[25]
-        one_detail['review_info'] = data[26]
-        one_detail['feedback_info'] = data[27]
-        if data[28]:
-            link_dict = json.loads(data[28])
+        one_detail['finish_time'] = str(data[18]) if data[18] else ''
+        one_detail['brush_hand'] = data[19]
+        one_detail['order_num'] = data[20]
+        one_detail['good_money_real'] = data[21]
+        one_detail['mail_money'] = data[22]
+        one_detail['taxes_money'] = data[23]
+        one_detail['sum_money'] = data[24]
+        one_detail['note'] = data[25]
+        one_detail['review_time'] = str(data[26]) if data[26] else ''
+        one_detail['review_title'] = data[27]
+        one_detail['review_info'] = data[28]
+        one_detail['feedback_info'] = data[29]
+        if data[30]:
+            link_dict = json.loads(data[30])
             link_list = list(link_dict.keys())
             one_detail['pic_link'] = link_list
         else:
             one_detail['pic_link'] = []
-        one_detail['review_note'] = data[29]
+        one_detail['review_note'] = data[31]
         return render_template('order/order_detail.html', **one_detail)
 
     except Exception as e:
@@ -209,7 +255,7 @@ def sub_order():
         results_ok = {'code': RET.OK, 'msg': MSG.OK}
         results_er = {'code': RET.SERVERERROR, 'msg': MSG.NODATA}
         data = json.loads(request.form.get('data'))
-        task_code = data.get('task_code')
+        task_code = data.get('task_code').strip()
         account = data.get('account')
         asin = data.get('asin').strip()
         store = data.get('store').strip()
@@ -251,8 +297,8 @@ def sub_order():
                 else:
                     task_state = '已完成'
                     account_state = ""
-
-            SqlData().update_payed(order_num, good_money_real, mail_money, taxes_money, note, sum_money,  task_code, task_state)
+            n_time = xianzai_time()
+            SqlData().update_payed(order_num, good_money_real, mail_money, taxes_money, note, sum_money,  task_code, task_state, n_time)
             now_time = xianzai_time()
             SqlData().update_order_time(now_time, task_code)
             goods, stores, first_buy_time = SqlData().search_asin_store(account)
@@ -315,19 +361,15 @@ def filter_order():
     page = request.args.get('page')
     results_ok = {'code': RET.OK, 'msg': MSG.OK}
     results_er = {'code': RET.SERVERERROR, 'msg': MSG.NODATA}
-    task_code = ORDER.TASK_CODE
-    terrace = ORDER.TERRACE
-    country = ORDER.COUNTRY
-    last_buy = ORDER.LAST_BUY
-    store = ORDER.STORE
-    store_group = ORDER.STORE_GROUP
-    asin = ORDER.ASIN
-    asin_group = ORDER.ASIN_GROUP
-    try:
-        asin_name, store_name = SqlData().search_one_task(task_code)
-    except Exception as e:
-        logging.error(str(e))
-        return jsonify({'code': RET.SERVERERROR, 'msg': MSG.NODATA})
+    task_code = request.args.get('task_code')
+    terrace = request.args.get('terrace')
+    country = request.args.get('country')
+    last_buy = int(request.args.get('last_buy'))
+    store = int(request.args.get('store'))
+    store_group = int(request.args.get('store_group'))
+    asin = int(request.args.get('asin'))
+    asin_group = int(request.args.get('asin_group'))
+    asin_name, store_name = SqlData().search_one_task(task_code)
 
     try:
         filter_of_terrace = SqlData().search_account_action('', terrace, country, user_id)
@@ -336,7 +378,6 @@ def filter_order():
         # for i in filter_of_terrace:
         #     if i.get('account_id') == 832:
         #         print('YES terrace')
-
         if len(filter_of_terrace) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合平台和国家要求的可用账号!'})
         match_of_time = filter_by_time(filter_of_terrace, int(last_buy))
@@ -344,7 +385,6 @@ def filter_order():
         # for i in match_of_time:
         #     if i.get('account_id') == 832:
         #         print('YES time')
-
         if len(match_of_time) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合距离上次可购买时间账号!'})
         match_of_store = filter_by_store(match_of_time, store_name, store, store_group)
@@ -352,7 +392,6 @@ def filter_order():
         # for i in match_of_store:
         #     if i.get('account_id') == 832:
         #         print('YES store')
-
         if len(match_of_store) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合店铺组合或店铺重合可用账号!'})
         match_of_asin = filter_by_asin(match_of_store, asin_name, asin, asin_group)
@@ -360,7 +399,6 @@ def filter_order():
         # for i in match_of_asin:
         #     if i == 832:
         #         print('YES  asin')
-
         if len(match_of_asin) == 0:
             return jsonify({'code': RET.SERVERERROR, 'msg': '没有符合ASIN组合或重合ASIN可用账号!'})
 
@@ -386,17 +424,24 @@ def filter_order():
                     data = SqlData().search_detail_order(account_id, account=account_sql, label=label_sql, pay_money=price_sql)
                     if data != 'F':
                         data_list.append(data)
+                page_list = list()
+                for i in range(0, len(data_list), int(limit)):
+                    page_list.append(data_list[i:i + int(limit)])
+                results_ok['data'] = page_list[int(page) - 1]
+                results_ok['count'] = len(match_of_asin)
+                return jsonify(results_ok)
+
             else:
-                for account_id in match_of_asin:
+                start_index = (int(page)-1) * int(limit)
+                end_index = int(page) * int(limit)
+                account_list = match_of_asin[start_index:end_index]
+                for account_id in account_list:
                     data = SqlData().search_detail_order(account_id)
                     if data != 'F':
                         data_list.append(data)
-            page_list = list()
-            for i in range(0, len(data_list), int(limit)):
-                page_list.append(data_list[i:i + int(limit)])
-            results_ok['data'] = page_list[int(page) - 1]
-            results_ok['count'] = len(data_list)
-            return jsonify(results_ok)
+                results_ok['data'] = data_list
+                results_ok['count'] = len(match_of_asin)
+                return jsonify(results_ok)
 
         except Exception as e:
             logging.error(str(e))
@@ -420,16 +465,16 @@ def filter_html():
     asin = request.args.get('asin')
     store_group = request.args.get('store_group')
     asin_group = request.args.get('asin_group')
-    terrace, country, store, asin, store_group, asin_group = check_param(terrace, country, store, asin, store_group, asin_group)
-    ORDER.TASK_CODE = task_code
-    ORDER.TERRACE = terrace
-    ORDER.COUNTRY = country
-    ORDER.LAST_BUY = last_buy
-    ORDER.STORE = store
-    ORDER.ASIN = asin
-    ORDER.STORE_GROUP = store_group
-    ORDER.ASIN_GROUP = asin_group
     context = dict()
+    context['task_code'] = task_code
+    context['buy_account'] = task_code
+    context['terrace'] = terrace
+    context['country'] = country
+    context['last_buy'] = last_buy
+    context['store'] = store
+    context['asin'] = asin
+    context['store_group'] = store_group
+    context['asin_group'] = asin_group
     try:
         label_list = SqlData().search_account_label(user_id)
 

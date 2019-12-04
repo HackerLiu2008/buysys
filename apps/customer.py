@@ -11,6 +11,47 @@ from flask import render_template, request, jsonify, session, g
 from tools_me.mysql_tools import SqlData
 
 
+@customer_blueprint.route('/un_lock/', methods=['GET', 'POST'])
+@customer_required
+def order_un_lock():
+    if request.method == 'GET':
+        data = request.args.get('data')
+        context = dict()
+        context['task_code'] = data
+        return render_template('customer/un_lock.html', **context)
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.form.get('data'))
+            run_time = request.form.get('run_time')
+            task_code_str = data.get('task_code')
+            task_code_list = task_code_str.split(',')
+            for i in task_code_list:
+                SqlData().update_order_one_field('task_run_time', run_time, i)
+                SqlData().update_order_one_int('lock', 0, i)
+            return jsonify({'code': RET.OK, 'msg': MSG.OK})
+        except Exception as e:
+            logging.error(e)
+            return jsonify({'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR})
+
+
+@customer_blueprint.route('/order_lock/', methods=['POST'])
+@customer_required
+def order_lock():
+    try:
+        data = json.loads(request.form.get('data'))
+        for i in data:
+            task_stats = i.get('task_stats')
+            if task_stats == '待留评' or task_stats == '已分配':
+                return jsonify({'code': RET.SERVERERROR, 'msg': '订单中包含已完成或待留评订单!'})
+        for n in data:
+            task_code = n.get('task_code').strip()
+            SqlData().update_order_one_int('lock', 1, task_code)
+        return jsonify({'code': RET.OK, 'msg': MSG.OK})
+    except Exception as e:
+        logging.error(str(e))
+        return jsonify({'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR})
+
+
 @customer_blueprint.route('/del_task', methods=['GET'])
 @customer_required
 def del_task():

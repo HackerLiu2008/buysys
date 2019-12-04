@@ -97,23 +97,23 @@
                             <label class="layui-form-label" title="过滤符合国家要求的账号">国家</label>
                             <div class="layui-input-block">
                                 <select name="country">
-                                    <option value="0" selected="">美国</option>
-                                    <option value="1">德国</option>
-                                    <option value="2">英国</option>
-                                    <option value="3">法国</option>
-                                    <option value="4">俄罗斯</option>
-                                    <option value="5">意大利</option>
-                                    <option value="6">新加坡</option>
-                                    <option value="7">印度</option>
-                                    <option value="8">西班牙</option>
-                                    <option value="9">日本</option>
-                                    <option value="10">澳洲</option>
-                                    <option value="11">印尼</option>
-                                    <option value="12">泰国</option>
-                                    <option value="13">马来西亚</option>
-                                    <option value="14">台湾</option>
-                                    <option value="15">越南</option>
-                                    <option value="16">菲律宾</option>
+                                    <option value="美国" selected="">美国</option>
+                                    <option value="德国">德国</option>
+                                    <option value="英国">英国</option>
+                                    <option value="法国">法国</option>
+                                    <option value="俄罗斯">俄罗斯</option>
+                                    <option value="意大利">意大利</option>
+                                    <option value="新加坡">新加坡</option>
+                                    <option value="印度">印度</option>
+                                    <option value="西班牙">西班牙</option>
+                                    <option value="日本">日本</option>
+                                    <option value="澳洲">澳洲</option>
+                                    <option value="印尼">印尼</option>
+                                    <option value="泰国">泰国</option>
+                                    <option value="马来西亚">马来西亚</option>
+                                    <option value="台湾">台湾</option>
+                                    <option value="越南">越南</option>
+                                    <option value="菲律宾">菲律宾</option>
                                 </select>
                             </div>
                         </div>
@@ -132,8 +132,8 @@
                             <div class="layui-input-block">
                                 <select name="store">
                                     <option value="0" selected="">绝不</option>
-                                    <option value="1">7天</option>
-                                    <option value="2">15天</option>
+                                    <option value="7">7天</option>
+                                    <option value="15">15天</option>
                                 </select>
                             </div>
                         </div>
@@ -143,8 +143,8 @@
                             <div class="layui-input-block">
                                 <select name="asin">
                                     <option value="0" selected="">绝不</option>
-                                    <option value="1">20天</option>
-                                    <option value="2">30天</option>
+                                    <option value="20">20天</option>
+                                    <option value="30">30天</option>
                                 </select>
                             </div>
                         </div>
@@ -153,8 +153,8 @@
                             <label class="layui-form-label" title="假如这个数值设置为2，比如买家甲购买了店铺a也购买了店铺b,那可以分配买家乙可以购买店铺a和店铺b的任何产品，但假如买家甲购又购买了店铺c，那买家乙就不能购买店铺c了,这时候就不能分配买家乙购买店铺c了">店铺组合</label>
                             <div class="layui-input-block">
                                 <select name="store_group">
-                                    <option value="0" selected="">两组</option>
-                                    <option value="1">三组</option>
+                                    <option value="2" selected="">两组</option>
+                                    <option value="3">三组</option>
                                 </select>
                             </div>
                         </div>
@@ -163,8 +163,8 @@
                             <label class="layui-form-label" title="假如这个数值设置为2，比如买家甲购买了产品A也购买了产品B,那可以分配买家乙也可以购买产品A和产品B,，但假如买家甲购买了产品C,这时候就不能分配买家乙购买产品C了。">ASIN组合</label>
                             <div class="layui-input-block">
                                 <select name="asin_group">
-                                    <option value="0" selected="">两组</option>
-                                    <option value="1">三组</option>
+                                    <option value="2" selected="">两组</option>
+                                    <option value="3">三组</option>
                                 </select>
                             </div>
                         </div>
@@ -487,17 +487,13 @@
                     , {field: 'customer_label', title: '客户标签', align: 'center', sort: true,}
                     , {field: 'country', title: '国家', align: 'center', sort: true,}
                     , {field: 'asin', title: 'ASIN', align: 'center', sort: true,}
-                    , {field: 'key_word', title: '关键字', align: 'center', sort: true}
-                    , {field: 'store_name', title: '店铺名', align: 'center', sort: true}
                     , {field: 'good_name', title: '商品名称', align: 'center', sort: true}
                     , {field: 'good_money', title: '商品价格($)', align: 'center', sort: true, totalRow: true}
-                    , {field: 'good_link', title: '商品链接', align: 'center', sort: true}
                     , {field: 'serve_class', title: '服务类型', align: 'center', sort: true}
                     , {field: 'buy_account', title: '购买账号', align: 'center', sort: true}
                     , {field: 'task_run_time', title: '订单时间', width: 160, align: 'center', sort: true}
                     , {field: 'task_state', title: '订单状态', align: 'center', sort: true}
                     {#, {field: 'urgent', title: '催屏时间', align: 'center', sort: true}#}
-                    , {field: 'brush_hand', title: '刷手', align: 'center', sort: true}
                     , {field: 'note', title: '备注', align: 'center', sort: true}
                     , {fixed: 'right', width: 200, align: 'center', toolbar: '#barDemo'}
                 ]];
@@ -561,7 +557,6 @@
                         , {field: 'store_name', title: '店铺名', align: 'center', sort: true}
                         , {field: 'good_name', title: '商品名称', align: 'center', sort: true}
                         , {field: 'good_money', title: '商品价格($)', align: 'center', sort: true, totalRow: true}
-                        , {field: 'good_link', title: '商品链接', align: 'center', sort: true}
                         , {field: 'serve_class', title: '服务类型', align: 'center', sort: true}
                         , {field: 'buy_account', title: '购买账号', align: 'center', sort: true}
                         , {field: 'account_ps', title: '账号密码', align: 'center'}
@@ -674,7 +669,6 @@
                         layer.alert("已完成订单,不可分配账号!")
                     } else {
                         var str = $("#example").serialize();
-                        {#obj.del();#}
                         layer.open({
                             type: 2
                             , offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset

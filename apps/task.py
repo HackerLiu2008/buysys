@@ -111,20 +111,13 @@ def edit_run_time():
         task_code = data.get('task_code')
         run_time = data.get('run_time')
         serve_class = data.get('serve_class')
-        serve_info = ''
-        if serve_class == "0":
-            serve_info = ''
-        elif serve_class == '1':
-            serve_info = 'Review'
-        elif serve_class == '2':
-            serve_info = 'FeedBack'
-        elif serve_class == '3':
-            serve_info = 'Review/FeedBack'
+        if serve_class:
+            SqlData().update_order_one_field('serve_class', serve_class, task_code)
         brush_hand = data.get('brush_hand')
         note = data.get('note')
         results = {'code': RET.OK, 'msg': MSG.OK}
         try:
-            SqlData().update_task_detail(run_time, serve_info, brush_hand, note, task_code)
+            SqlData().update_task_detail(run_time, brush_hand, note, task_code)
             return jsonify(results)
         except Exception as e:
             logging.error(str(e))

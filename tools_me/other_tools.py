@@ -1,4 +1,5 @@
 import datetime
+import itertools
 import json
 import os
 import time
@@ -182,74 +183,6 @@ def middle_required(view_func):
     return wraaper
 
 
-def check_param(terrace, country, store, asin, store_group, asin_group):
-    terrace_info = ''
-    country_info = ''
-    store_day = ''
-    asin_day = ''
-    store_info = ''
-    asin_info = ''
-    if terrace == 'AMZ':
-        terrace_info = "AMZ"
-    if terrace == 'SMT':
-        terrace_info = 'SMT'
-    if country == '0':
-        country_info = '美国'
-    if country == '1':
-        country_info = "德国"
-    if country == '2':
-        country_info = '英国'
-    if country == '3':
-        country_info = '法国'
-    if country == '4':
-        country_info = '俄罗斯'
-    if country == '5':
-        country_info = '意大利'
-    if country == '6':
-        country_info = '新加坡'
-    if country == '7':
-        country_info = '印度'
-    if country == '8':
-        country_info = '西班牙'
-    if country == '9':
-        country_info = '日本'
-    if country == '10':
-        country_info = '澳洲'
-    if country == '11':
-        country_info = '印尼'
-    if country == '12':
-        country_info = '泰国'
-    if country == '13':
-        country_info = '马来西亚'
-    if country == '14':
-        country_info = '台湾'
-    if country == '15':
-        country_info = '越南'
-    if country == '16':
-        country_info = '菲律宾'
-    if store == '0':
-        store_day = 0
-    if store == '1':
-        store_day = 7
-    if store == '2':
-        store_day = 15
-    if asin == '0':
-        asin_day = 0
-    if asin == '1':
-        asin_day = 20
-    if asin == '2':
-        asin_day = 30
-    if store_group == '0':
-        store_info = 2
-    if store_group == '1':
-        store_info = 3
-    if asin_group == '0':
-        asin_info = 2
-    if asin_group == '1':
-        asin_info = 3
-    return terrace_info, country_info, store_day, asin_day, store_info, asin_info
-
-
 # 时间戳转换成datatime格式字符串,timeStamp必须是str类型
 def timenum_to_datatime(timeStamp):
     timeArray = time.localtime(timeStamp)
@@ -281,36 +214,44 @@ def combine(temp_list, n):
 
 # 去除重复的组合,返回可用的account字典
 def repeat_asin(account_action_asin):
+
     # 将所有的组合汇总到同一个list
     key_list = list(account_action_asin.keys())
     tem_list = list()
     for i in key_list:
         asin_com = account_action_asin.get(i)
         tem_list.extend(asin_com)
-
     # 取出重合的组合
-    index = 0
-    tem_list_1 = list()
+    ll = list()
+    for t in tem_list:
+        tamp = tuple(sorted(list(t)))
+        ll.append(tamp)
+
+    '''
     for i in tem_list:
         new_list = tem_list[0:index] + tem_list[index + 1:]
         for n in new_list:
             if set(i).issubset(set(n)) and i not in tem_list_1:
                 tem_list_1.append(i)
         index += 1
+    '''
 
+    tem_list_1 = [x[0] for x in itertools.groupby(sorted(ll))]
     # 将含有相同组合的账号删除
     have_id = list()
     for i in key_list:
         asin_com = account_action_asin.get(i)
+        temp_list = list()
+        for t in asin_com:
+            temp = tuple(sorted(list(t)))
+            temp_list.append(temp)
         for n in tem_list_1:
-            if n in asin_com:
+            if n in temp_list:
                 have_id.append(i)
-
     # 去除重复账号id(have_id)
     have_id = list(set(have_id))
     for o in have_id:
         account_action_asin.pop(o)
-
     # 返回过滤后的符合要求的账号
     return account_action_asin
 
@@ -359,7 +300,6 @@ def filter_by_store(match_of_time, store_name, store, store_group):
                         match_of_store.append(one_action)
             else:
                 match_of_store.append(one_action)
-
     have_store = dict()
     has_store = dict()
     for one_action in match_of_store:
@@ -375,18 +315,14 @@ def filter_by_store(match_of_time, store_name, store, store_group):
                 has_store[account_id] = ''
         else:
             has_store[account_id] = ''
-
     results = repeat_asin(have_store)
     has_store.update(results)
-    keys_list = has_store.keys()
+    keys_list = list(has_store.keys())
     successful_list = list()
-    for key in keys_list:
-        index = 0
-        for i in match_of_time:
-            account_id = i.get('account_id')
-            if key == account_id:
-                successful_list.append(match_of_time[index])
-            index += 1
+    for i in match_of_time:
+        account_id = i.get('account_id')
+        if account_id in keys_list:
+            successful_list.append(i)
     return successful_list
 
 
@@ -396,7 +332,6 @@ def filter_by_asin(match_of_store, asin_name, asin, asin_group):
         for one_action in match_of_store:
             stores = one_action.get('goods')
             if stores:
-                print(stores)
                 store_list = list(json.loads(stores).keys())
                 if asin_name not in store_list:
                     match_of_asin.append(one_action)

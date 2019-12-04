@@ -30,6 +30,55 @@
     </div>
 </div>
 
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text"  id="terrace" value="{{ terrace }}">
+    </div>
+</div>
+
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text"  id="country" value="{{ country }}">
+    </div>
+</div>
+
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text" id="last_buy" value="{{ last_buy }}">
+    </div>
+</div>
+
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text" id="store" value="{{ store }}">
+    </div>
+</div>
+
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text" id="asin" value="{{ asin }}">
+    </div>
+</div>
+
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text" id="store_group" value="{{ store_group }}">
+    </div>
+</div>
+
+<div class="layui-form-item" style="display: none">
+    <label class="layui-form-label">隐藏域</label>
+    <div class="layui-input-block">
+        <input type ="text" id="asin_group" value="{{ asin_group }}">
+    </div>
+</div>
+
 <form class="layui-form" action="" lay-filter="example" id="example">
 
     <div class="layui-form-item">
@@ -97,14 +146,21 @@
             });
         });
 
-        var task_code = $('#task_code'),
-            buy_account = $('#buy_account');
+        var task_code = $('#task_code').val(),
+            buy_account = $('#buy_account').val(),
+            terrace = $('#terrace').val(),
+            country = $('#country').val(),
+            last_buy = $('#last_buy').val(),
+            store = $('#store').val(),
+            asin = $('#asin').val(),
+            store_group = $('#store_group').val(),
+            asin_group = $('#asin_group').val();
 
         //执行一个 table 实例
         table.render({
             elem: '#filter_order'
             , height: ''
-            , url: '/order/filter_order/' //数据接口
+            , url: '/order/filter_order/?task_code='+task_code+'&terrace='+terrace+'&country='+country+'&last_buy='+last_buy+'&store='+store+'&asin='+asin+'&store_group='+store_group+'&asin_group='+asin_group
             , title: '过滤条件账号'
             , limit:10
             , area: ['80%','80%']
@@ -155,7 +211,7 @@
                     //向服务端发送删除指令
                     $.ajax({
                         type : 'GET',
-                        url : '/order/bind_account' + '?account=' + data.account +'&label='+ data.label + '&task_code=' + task_code.val() + '&buy_account=' + buy_account.val(),
+                        url : '/order/bind_account' + '?account=' + data.account +'&label='+ data.label + '&task_code=' + task_code + '&buy_account=' + buy_account,
                         dataType : 'json',
                         success : function(data) {
                             {#var data1 = JSON.parse(data);#}

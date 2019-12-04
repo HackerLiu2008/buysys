@@ -9,17 +9,16 @@ from flask import jsonify
 # from tools_me.other_tools import is_json
 # from tools_me.parameter import RET, MSG
 from tools_me.other_tools import is_json
+from tools_me.parameter import RET, MSG
 
 
 class SqlData(object):
     def __init__(self):
-        # host = "rm-j6c3t1i83rgylsuamvo.mysql.rds.aliyuncs.com"
-        # host = "119.3.251.10"
-        host = "114.116.236.27"
+        host = "127.0.0.1"
         port = 3306
         user = "root"
         # password = "lx7996"
-        password = "gute123"
+        password = "admin"
         database = "buysys"
         self.connect = pymysql.Connect(
             host=host, port=port, user=user,
@@ -156,10 +155,13 @@ class SqlData(object):
             detail_dict['account_ps'] = i[15]
             detail_dict['task_run_time'] = str(i[16])
             detail_dict['task_state'] = i[17]
-            detail_dict['brush_hand'] = i[18]
-            detail_dict['order_num'] = "\t" + i[19]
-            detail_dict['note'] = i[24]
-            detail_dict['review_title'] = i[25]
+            # i[18]  完成时间
+            detail_dict['brush_hand'] = i[19]
+            detail_dict['order_num'] = "\t" + i[20]
+            detail_dict['note'] = i[25]
+            # i[26] 留评时间
+            detail_dict['review_title'] = i[27]
+            '''
             if is_json(i[26]):
                 link_dict = json.loads(i[26])
                 key_list = list(link_dict.keys())
@@ -169,8 +171,13 @@ class SqlData(object):
                 detail_dict['review_info'] = s
             else:
                 detail_dict['review_info'] = i[26]
-            detail_dict['feedback_info'] = i[27]
-            detail_dict['urgent'] = i[30]
+            '''
+            detail_dict['feedback_info'] = i[28]
+            detail_dict['urgent'] = i[32]
+            if i[33]:
+                detail_dict['lock'] = '锁定'
+            else:
+                detail_dict['lock'] = '正常'
             detail_list.append(detail_dict)
         return detail_list
 
@@ -194,24 +201,26 @@ class SqlData(object):
             order_data['account_ps'] = i[15]
             order_data['task_run_time'] = str(i[16])
             order_data['task_state'] = i[17]
-            order_data['brush_hand'] = i[18]
-            order_data['order_num'] = "\t" + i[19]
-            order_data['good_money_real'] = i[20]
-            order_data['note'] = i[24]
-            order_data['review_title'] = i[25]
-            if is_json(i[26]):
-                link_dict = json.loads(i[26])
-                key_list = list(link_dict.keys())
-                s = ''
-                for n in key_list:
-                    s += n
-                order_data['review_info'] = s
-            else:
-                order_data['review_info'] = i[26]
-            order_data['feedback_info'] = i[27]
-            order_data['urgent'] = i[30]
-            order_data['customer_label'] = i[31]
-            order_data['buy_method'] = i[32]
+            order_data['finish_time'] = str(i[18]) if i[18] else ''
+            order_data['brush_hand'] = i[19]
+            order_data['order_num'] = "\t" + i[20]
+            order_data['good_money_real'] = i[21]
+            order_data['taxes_money'] = i[23]
+            order_data['note'] = i[25]
+            order_data['review_title'] = i[27]
+            # if is_json(i[26]):
+            #     link_dict = json.loads(i[26])
+            #     key_list = list(link_dict.keys())
+            #     s = ''
+            #     for n in key_list:
+            #         s += n
+            #     order_data['review_info'] = s
+            # else:
+            order_data['review_info'] = i[28]
+            order_data['feedback_info'] = i[29]
+            order_data['urgent'] = i[32]
+            order_data['customer_label'] = i[34]
+            order_data['buy_method'] = i[35]
             order_list.append(order_data)
         return order_list
 
@@ -500,7 +509,6 @@ class SqlData(object):
             self.cursor.execute(sql)
             self.connect.commit()
         except Exception as e:
-            print(e)
             logging.error("更新客户订单task_json失败!" + str(e))
             self.connect.rollback()
         self.close_connect()
@@ -605,11 +613,14 @@ class SqlData(object):
         self.close_connect()
 
     # 更新下单后的信息
-    def update_payed(self, order_num, good_money_real, mail_money, taxes_money, note, sum_money, task_code, task_state):
-        sql = "UPDATE task_detail_info SET order_num='{}',good_money_real={},mail_money={},taxes_money={}," \
-              "note='{}', sum_money={},task_state='{}' WHERE task_code='{}'".format(order_num, good_money_real,
-                                                                                    mail_money, taxes_money, note,
-                                                                                    sum_money, task_state, task_code)
+    def update_payed(self, order_num, good_money_real, mail_money, taxes_money, note, sum_money, task_code, task_state,
+                     n_time):
+        sql = "UPDATE task_detail_info SET order_num='{}',good_money_real={},mail_money={},taxes_money={},note='{}', " \
+              "sum_money={},task_state='{}',finish_time='{}' WHERE task_code='{}'".format(order_num, good_money_real,
+                                                                                         mail_money, taxes_money, note,
+                                                                                         sum_money, task_state, n_time,
+                                                                                          task_code)
+        print(sql)
         try:
             self.cursor.execute(sql)
             self.connect.commit()
@@ -631,6 +642,16 @@ class SqlData(object):
 
     def update_order_one_field(self, field, value, task_code):
         sql = "UPDATE task_detail_info SET {}='{}' WHERE task_code='{}'".format(field, value, task_code)
+        try:
+            self.cursor.execute(sql)
+            self.connect.commit()
+        except Exception as e:
+            logging.error(str(e))
+            self.connect.rollback()
+        self.close_connect()
+
+    def update_order_one_int(self, field, value, task_code):
+        sql = "UPDATE task_detail_info SET `{}`={} WHERE task_code='{}'".format(field, value, task_code)
         try:
             self.cursor.execute(sql)
             self.connect.commit()
@@ -709,10 +730,10 @@ class SqlData(object):
         return row[0]
 
     def search_now_order(self, t1, t2, user_id):
-        sql = "SELECT task_detail_info.*, task_parent.customer_label,task_parent.pay_middle FROM task_detail_info LEFT JOIN task_parent ON task_detail_info.parent_id=" \
-              "task_parent.id LEFT JOIN user_info ON user_info.id = task_parent.user_id WHERE task_run_time BETWEEN " \
-              "'{}' and '{}' AND user_info.id = {} AND task_detail_info.task_state = '' AND task_parent.pay_cus != ''".format(
-            t1, t2, user_id)
+        sql = "SELECT task_detail_info.*, task_parent.customer_label,task_parent.pay_middle FROM task_detail_info " \
+              "LEFT JOIN task_parent ON task_detail_info.parent_id=task_parent.id LEFT JOIN user_info ON user_info.id" \
+              " = task_parent.user_id WHERE task_run_time BETWEEN '{}' and '{}' AND user_info.id = {} AND " \
+              "task_detail_info.task_state = '' AND task_parent.pay_cus != '' AND task_detail_info.lock=0".format(t1, t2, user_id)
         self.cursor.execute(sql)
         rows = self.cursor.fetchall()
         now_order_list = self.orders_to_dict(rows)
@@ -859,9 +880,9 @@ class SqlData(object):
             self.connect.rollback()
         self.close_connect()
 
-    def update_task_detail(self, run_time, serve_class, brush_hand, note, task_code):
-        sql = "UPDATE task_detail_info SET task_run_time='{}', serve_class='{}', brush_hand='{}', note='{}' WHERE task_code='{}';". \
-            format(run_time, serve_class, brush_hand, note, task_code)
+    def update_task_detail(self, run_time, brush_hand, note, task_code):
+        sql = "UPDATE task_detail_info SET task_run_time='{}', brush_hand='{}', note='{}' WHERE task_code='{}';". \
+            format(run_time, brush_hand, note, task_code)
         try:
             self.cursor.execute(sql)
             self.connect.commit()

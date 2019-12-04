@@ -434,7 +434,10 @@ def amz_serve():
             serve_dict[bili] = int(money)
         else:
             serve_dict = json.loads(amz_serve)
-            serve_dict[bili] = int(money)
+            if int(money) == 0:
+                del serve_dict[bili]
+            else:
+                serve_dict[bili] = int(money)
         serve_json = json.dumps(serve_dict)
         serve_json = transferContent(serve_json)
         SqlData().update_user_cus('amz_money', serve_json, user_id, label)
