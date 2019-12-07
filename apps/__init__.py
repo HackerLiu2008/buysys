@@ -25,4 +25,4 @@ dome_blueprint = Blueprint('dome', __name__, url_prefix='/dome', template_folder
 middle_blueprint = Blueprint('middle', __name__, url_prefix='/middle',  template_folder='../templates')
 
 
-from . import task, account, upload, user, order, customer, middle
+from . import task, account, upload, user, order, customer, middle, dome

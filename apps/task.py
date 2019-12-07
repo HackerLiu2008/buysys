@@ -108,7 +108,7 @@ def edit_run_time():
         return render_template('task/edit_run_time.html')
     elif request.method == 'POST':
         data = json.loads(request.form.get('data'))
-        task_code = data.get('task_code')
+        task_code = data.get('task_code').strip()
         run_time = data.get('run_time')
         serve_class = data.get('serve_class')
         if serve_class:

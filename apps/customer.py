@@ -477,7 +477,7 @@ def edit_review():
     if request.method == 'POST':
         try:
             data = json.loads(request.form.get('data'))
-            task_code = data.get('task_code')
+            task_code = data.get('task_code').strip()
             review_title = data.get('review_title')
             review_info = data.get('review_info')
             feedback_info = data.get('feedback_info')
@@ -506,6 +506,7 @@ def edit_review():
             results = {'code': RET.OK, 'msg': MSG.OK}
             return jsonify(results)
         except Exception as e:
+            print(e)
             logging.error(str(e))
             results = {'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR}
             return jsonify(results)
@@ -1289,40 +1290,44 @@ def one_detail():
     task_code = request.args.get('task_code')
     results = {'code': RET.SERVERERROR, 'msg': MSG.SERVERERROR}
     try:
-        data = SqlData().search_order_task_code(task_code)
-        one_detail = dict()
-        one_detail['big_code'] = data[2].split('-')[0]
-        one_detail['task_code'] = data[2]
-        one_detail['country'] = data[3]
-        one_detail['asin'] = data[4]
-        one_detail['key_word'] = data[5]
-        one_detail['kw_location'] = data[6]
-        one_detail['store_name'] = data[7]
-        one_detail['good_name'] = data[8]
-        one_detail['good_money'] = data[9]
-        one_detail['good_link'] = data[10]
-        one_detail['mail_method'] = data[11]
-        one_detail['pay_method'] = data[12]
-        one_detail['serve_class'] = data[13]
-        one_detail['task_run_time'] = str(data[16])
-        one_detail['task_state'] = data[17]
-        one_detail['order_num'] = data[19]
-        one_detail['good_money_real'] = data[20]
-        one_detail['mail_money'] = data[21]
-        one_detail['taxes_money'] = data[22]
-        one_detail['sum_money'] = data[23]
-        one_detail['note'] = data[24]
-        one_detail['review_title'] = data[25]
-        one_detail['review_info'] = data[26]
-        one_detail['feedback_info'] = data[27]
-        if data[28]:
-            link_dict = json.loads(data[28])
-            link_list = list(link_dict.keys())
-            one_detail['pic_link'] = link_list
-        else:
-            one_detail['pic_link'] = []
-        one_detail['review_note'] = data[29]
-        return render_template('customer/cus_order_detail.html', **one_detail)
+        i = SqlData().search_order_task_code(task_code)
+        print(len(i))
+        order_data = dict()
+        order_data['big_code'] = i[2].split('-')[0]
+        order_data['task_code'] = "\t" + i[2]
+        order_data['country'] = i[3]
+        order_data['asin'] = "\t" + i[4]
+        order_data['key_word'] = i[5]
+        order_data['kw_location'] = i[6]
+        order_data['store_name'] = i[7]
+        order_data['good_name'] = i[8]
+        order_data['good_money'] = i[9]
+        order_data['good_link'] = i[10]
+        order_data['mail_method'] = i[11]
+        order_data['pay_method'] = i[12]
+        order_data['serve_class'] = i[13]
+        order_data['buy_account'] = i[14]
+        order_data['account_ps'] = i[15]
+        order_data['task_run_time'] = str(i[16])
+        order_data['task_state'] = i[17]
+        order_data['finish_time'] = str(i[18]) if i[18] else ''
+        order_data['brush_hand'] = i[19]
+        order_data['order_num'] = "\t" + i[20]
+        order_data['good_money_real'] = i[21]
+        order_data['taxes_money'] = i[23]
+        order_data['note'] = i[25]
+        order_data['review_title'] = i[27]
+        # if is_json(i[26]):
+        #     link_dict = json.loads(i[26])
+        #     key_list = list(link_dict.keys())
+        #     s = ''
+        #     for n in key_list:
+        #         s += n
+        #     order_data['review_info'] = s
+        # else:
+        order_data['review_info'] = i[28]
+        order_data['feedback_info'] = i[29]
+        return render_template('customer/cus_order_detail.html', **order_data)
 
     except Exception as e:
         logging.error(str(e))

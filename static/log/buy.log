@@ -13197,3 +13197,217 @@
 2019-12-04  10:10:19 Wed  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [04/Dec/2019 10:10:19] "GET /account/detail/?page=1&limit=20 HTTP/1.1" 200 - 
 2019-12-04  10:10:21 Wed  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [04/Dec/2019 10:10:21] "GET /task/sum_info/?page=1&limit=50 HTTP/1.1" 200 - 
 2019-12-04  10:10:21 Wed  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [04/Dec/2019 10:10:21] "GET /user/conf HTTP/1.1" 200 - 
+2019-12-05  09:46:57 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:46:58 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:46:58 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:46:58 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  09:47:32 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:47:32] "GET /account/login HTTP/1.1" 404 - 
+2019-12-05  09:47:35 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:47:35] "GET /account/login HTTP/1.1" 404 - 
+2019-12-05  09:47:49 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:47:51 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:47:51 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:47:51 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  09:47:51 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:47:51] "GET /account/login HTTP/1.1" 404 - 
+2019-12-05  09:47:52 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:47:52] "GET /account/login HTTP/1.1" 404 - 
+2019-12-05  09:47:55 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:47:55] "GET /account/login HTTP/1.1" 404 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /account/ HTTP/1.1" 200 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /static/css/index.css HTTP/1.1" 304 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /static/img/a.png HTTP/1.1" 304 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /static/img/1.jpg HTTP/1.1" 304 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /static/img/yhm.png HTTP/1.1" 304 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /static/img/mm.png HTTP/1.1" 304 - 
+2019-12-05  09:48:03 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:03] "GET /static/layui/layui.js HTTP/1.1" 304 - 
+2019-12-05  09:48:09 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:09] "POST /user/login HTTP/1.1" 200 - 
+2019-12-05  09:48:09 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:09] "GET /account/ HTTP/1.1" 200 - 
+2019-12-05  09:48:10 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:10] "GET /task/add_task.html HTTP/1.1" 404 - 
+2019-12-05  09:48:10 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:10] "GET /task/edit_task.html HTTP/1.1" 404 - 
+2019-12-05  09:48:10 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:10] "GET /static/layui/font/iconfont.woff2?v=250 HTTP/1.1" 304 - 
+2019-12-05  09:48:10 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:10] "GET /account/detail/?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  09:48:11 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:11] "GET /task/ HTTP/1.1" 200 - 
+2019-12-05  09:48:17 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:17] "GET /task/sum_info/?page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:48:21 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:21] "GET /static/layui/css/modules/layer/default/loading-1.gif HTTP/1.1" 304 - 
+2019-12-05  09:48:21 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:21] "GET /task/task_list/?sum_order_code=201911291105592b381&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  09:48:21 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:21] "GET /task/task_detail/?sum_order_code=201911291105592b381&page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:48:24 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:24] "GET /task/edit_run_time HTTP/1.1" 200 - 
+2019-12-05  09:48:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:29] "POST /task/edit_run_time HTTP/1.1" 200 - 
+2019-12-05  09:48:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:29] "GET /task/task_list/?sum_order_code=201911291105592b381&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  09:48:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:48:29] "GET /task/task_detail/?sum_order_code=201911291105592b381&page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:48:52 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\tools_me\\mysql_tools.py', reloading 
+2019-12-05  09:48:52 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:48:53 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:48:53 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:48:53 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  09:49:40 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\tools_me\\mysql_tools.py', reloading 
+2019-12-05  09:49:40 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:49:41 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:49:41 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:49:41 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  09:50:06 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\tools_me\\mysql_tools.py', reloading 
+2019-12-05  09:50:06 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:50:07 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:50:07 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:50:07 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  09:50:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:50:19] "GET /task/task_list/?sum_order_code=201911291105592b381&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  09:50:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:50:19] "GET /task/task_detail/?sum_order_code=201911291105592b381&page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:50:21 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:50:21] "GET /task/edit_run_time HTTP/1.1" 200 - 
+2019-12-05  09:50:23 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:50:23] "POST /task/edit_run_time HTTP/1.1" 200 - 
+2019-12-05  09:50:23 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:50:23] "GET /task/task_list/?sum_order_code=201911291105592b381&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  09:50:23 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:50:23] "GET /task/task_detail/?sum_order_code=201911291105592b381&page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:51:30 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:51:30] "GET /task/task_list/?sum_order_code=201911291105592b381&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  09:51:30 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:51:30] "GET /task/task_detail/?sum_order_code=201911291105592b381&page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:51:44 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:51:44] "GET /task/task_list/?sum_order_code=201911291105592b381&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  09:51:44 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 09:51:44] "GET /task/task_detail/?sum_order_code=201911291105592b381&page=1&limit=50 HTTP/1.1" 200 - 
+2019-12-05  09:51:57 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\tools_me\\mysql_tools.py', reloading 
+2019-12-05  09:51:57 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:52:02 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:52:02 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:52:02 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  09:52:27 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\apps\\task.py', reloading 
+2019-12-05  09:52:27 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  09:52:29 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  09:52:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  09:52:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:13:11 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:13:12 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:13:12 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:13:12 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:13:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:25] "GET /customer/login HTTP/1.1" 200 - 
+2019-12-05  10:13:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:25] "GET /static/img/icon1.png HTTP/1.1" 304 - 
+2019-12-05  10:13:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:25] "GET /static/css/login.css HTTP/1.1" 304 - 
+2019-12-05  10:13:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:25] "GET /static/img/icon2.png HTTP/1.1" 304 - 
+2019-12-05  10:13:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:25] "GET /static/img/bg2.jpg HTTP/1.1" 304 - 
+2019-12-05  10:13:42 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\apps\\customer.py', reloading 
+2019-12-05  10:13:42 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:13:44 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:13:44 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:13:44 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:13:48 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:48] "POST /customer/login HTTP/1.1" 200 - 
+2019-12-05  10:13:48 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:48] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:13:48 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:48] "GET /customer/task?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  10:13:50 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:50] "GET /customer/task_list/?sum_order_code=20191126103131db23b&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  10:13:51 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:51] "GET /customer/task_detail/?sum_order_code=20191126103131db23b&page=1&limit=15 HTTP/1.1" 200 - 
+2019-12-05  10:13:52 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:52] "GET /customer/task_detail/?sum_order_code=20191126103131db23b&page=1&limit=15&task_state=待留评 HTTP/1.1" 200 - 
+2019-12-05  10:13:53 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:53] "GET /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:13:57 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:13:57 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:13:57] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:18:33 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:18:35 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:18:35 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:18:35 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:18:54 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:18:54 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:18:54] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:18:59 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\tools_me\\mysql_tools.py', reloading 
+2019-12-05  10:18:59 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:19:02 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:19:02 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:19:02 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:20:04 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:20:07 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:20:07 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:20:08 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:20:08 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:20:08 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:20:08] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:20:10 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:20:10 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:20:10] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:21:10 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:21:12 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:21:12 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:21:13 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:21:22 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:21:22 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:21:22] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:21:52 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:21:54 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:21:54 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:21:54 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:21:56 Thu  root ERROR G:\order_flask\apps\customer.py Expecting value: line 1 column 1 (char 0) 
+2019-12-05  10:21:56 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:21:56] "GET /customer/one_detail/?task_code=20191126103131db23b-1 HTTP/1.1" 200 - 
+2019-12-05  10:21:59 Thu  root ERROR G:\order_flask\apps\customer.py Expecting value: line 1 column 1 (char 0) 
+2019-12-05  10:21:59 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:21:59] "GET /customer/one_detail/?task_code=20191126103131db23b-1 HTTP/1.1" 200 - 
+2019-12-05  10:22:01 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:22:01] "GET /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:22:07 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:22:07] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:22:13 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:22:13] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:22:15 Thu  root ERROR G:\order_flask\apps\customer.py Expecting value: line 1 column 1 (char 0) 
+2019-12-05  10:22:15 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:22:15] "GET /customer/one_detail/?task_code=20191126103131db23b-1 HTTP/1.1" 200 - 
+2019-12-05  10:22:27 Thu  root ERROR G:\order_flask\apps\customer.py Expecting value: line 1 column 1 (char 0) 
+2019-12-05  10:22:27 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:22:27] "GET /customer/one_detail/?task_code=20191126103131db23b-12 HTTP/1.1" 200 - 
+2019-12-05  10:23:18 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\tools_me\\mysql_tools.py', reloading 
+2019-12-05  10:23:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:23:22 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:23:22 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:23:22 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:25:01 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:25:04 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:25:04 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:25:04 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:25:06 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:06] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:25:07 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:07] "GET /static/img/buy-icon.png HTTP/1.1" 200 - 
+2019-12-05  10:25:07 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:07] "GET /customer/task?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  10:25:09 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:09] "GET /customer/task_list/?sum_order_code=20191126103131db23b&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  10:25:09 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:09] "GET /customer/task_detail/?sum_order_code=20191126103131db23b&page=1&limit=15 HTTP/1.1" 200 - 
+2019-12-05  10:25:13 Thu  root ERROR G:\order_flask\apps\customer.py name 'i' is not defined 
+2019-12-05  10:25:13 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:13] "GET /customer/one_detail/?task_code=20191126103131db23b-4 HTTP/1.1" 200 - 
+2019-12-05  10:25:36 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:36] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:25:36 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:36] "GET /static/img/buy-icon.png HTTP/1.1" 200 - 
+2019-12-05  10:25:36 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:36] "GET /customer/task?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  10:25:37 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\apps\\customer.py', reloading 
+2019-12-05  10:25:37 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:25:39 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:25:39 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:25:39 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:25:39 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:39] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:25:40 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:40] "GET /static/img/buy-icon.png HTTP/1.1" 200 - 
+2019-12-05  10:25:40 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:40] "GET /customer/task?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  10:25:42 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:42] "GET /customer/task_list/?sum_order_code=20191126103131db23b&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  10:25:42 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:42] "GET /customer/task_detail/?sum_order_code=20191126103131db23b&page=1&limit=15 HTTP/1.1" 200 - 
+2019-12-05  10:25:44 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:25:44 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:44] "GET /customer/one_detail/?task_code=20191126103131db23b-14 HTTP/1.1" 200 - 
+2019-12-05  10:25:47 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:25:47 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:25:47] "GET /customer/one_detail/?task_code=20191126103131db23b-30 HTTP/1.1" 200 - 
+2019-12-05  10:26:00 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:26:00 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:00] "GET /customer/one_detail/?task_code=20191126103131db23b-5 HTTP/1.1" 200 - 
+2019-12-05  10:26:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:25] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:26:25 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\apps\\customer.py', reloading 
+2019-12-05  10:26:26 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:26:28 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:26:28 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:26:28 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:26:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:29] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:26:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:29] "GET /static/img/buy-icon.png HTTP/1.1" 200 - 
+2019-12-05  10:26:29 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:29] "GET /customer/task?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  10:26:32 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:32] "GET /customer/task_list/?sum_order_code=20191126103131db23b&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  10:26:32 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:32] "GET /customer/task_detail/?sum_order_code=20191126103131db23b&page=1&limit=15 HTTP/1.1" 200 - 
+2019-12-05  10:26:34 Thu  root ERROR G:\order_flask\apps\customer.py tuple index out of range 
+2019-12-05  10:26:34 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:26:34] "GET /customer/one_detail/?task_code=20191126103131db23b-4 HTTP/1.1" 200 - 
+2019-12-05  10:28:17 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Detected change in 'G:\\order_flask\\apps\\customer.py', reloading 
+2019-12-05  10:28:17 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:28:19 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:28:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:28:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:28:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:19] "GET /customer/index HTTP/1.1" 200 - 
+2019-12-05  10:28:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:19] "GET /static/img/buy-icon.png HTTP/1.1" 200 - 
+2019-12-05  10:28:19 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:19] "GET /customer/task?page=1&limit=20 HTTP/1.1" 200 - 
+2019-12-05  10:28:22 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:22] "GET /customer/task_list/?sum_order_code=20191120093148850d1&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  10:28:23 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:23] "GET /customer/task_detail/?sum_order_code=20191120093148850d1&page=1&limit=15 HTTP/1.1" 200 - 
+2019-12-05  10:28:24 Thu  root ERROR G:\order_flask\apps\customer.py render_template() argument after ** must be a mapping, not function 
+2019-12-05  10:28:24 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:24] "GET /customer/one_detail/?task_code=20191120093148850d1-149 HTTP/1.1" 200 - 
+2019-12-05  10:28:26 Thu  root ERROR G:\order_flask\apps\customer.py render_template() argument after ** must be a mapping, not function 
+2019-12-05  10:28:26 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:26] "GET /customer/one_detail/?task_code=20191120093148850d1-147 HTTP/1.1" 200 - 
+2019-12-05  10:28:53 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:28:55 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:28:55 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:28:55 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:28:58 Thu  root ERROR G:\order_flask\apps\customer.py render_template() argument after ** must be a mapping, not function 
+2019-12-05  10:28:58 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:28:58] "GET /customer/one_detail/?task_code=20191120093148850d1-149 HTTP/1.1" 200 - 
+2019-12-05  10:29:54 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Restarting with stat 
+2019-12-05  10:29:56 Thu  werkzeug WARNING C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger is active! 
+2019-12-05  10:29:56 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Debugger PIN: 327-563-669 
+2019-12-05  10:29:56 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit) 
+2019-12-05  10:29:57 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:29:57] "GET /customer/one_detail/?task_code=20191120093148850d1-149 HTTP/1.1" 200 - 
+2019-12-05  10:30:28 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:28] "GET /customer/task_list/?sum_order_code=20191126103131db23b&terrace=AMZ HTTP/1.1" 200 - 
+2019-12-05  10:30:28 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:28] "GET /customer/task_detail/?sum_order_code=20191126103131db23b&page=1&limit=15 HTTP/1.1" 200 - 
+2019-12-05  10:30:30 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:30] "GET /customer/one_detail/?task_code=20191126103131db23b-4 HTTP/1.1" 200 - 
+2019-12-05  10:30:33 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:33] "GET /customer/one_detail/?task_code=20191126103131db23b-5 HTTP/1.1" 200 - 
+2019-12-05  10:30:36 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:36] "GET /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:30:42 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:42] "POST /customer/edit_review HTTP/1.1" 200 - 
+2019-12-05  10:30:44 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:44] "GET /customer/one_detail/?task_code=20191126103131db23b-5 HTTP/1.1" 200 - 
+2019-12-05  10:30:47 Thu  werkzeug INFO C:\Users\Think\AppData\Local\Programs\Python\Python37\lib\site-packages\werkzeug\_internal.py 127.0.0.1 - - [05/Dec/2019 10:30:47] "GET /customer/one_detail/?task_code=20191126103131db23b-4 HTTP/1.1" 200 - 
